@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\TravelPackageRequest;
 use App\TravelPackage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use SweetAlert;
 
 class TravelPackageController extends Controller
 {
@@ -44,6 +45,7 @@ class TravelPackageController extends Controller
         $data['slug'] = Str::slug($request->title);
 
         TravelPackage::create($data);
+        alert()->success('Data berhasil disimpan', 'Sukses');
         return redirect()->route('travel-package.index');
     }
 
@@ -87,6 +89,7 @@ class TravelPackageController extends Controller
 
         $item->update($data);
 
+        alert()->success('Data berhasil diubah', 'Edit');
         return redirect()->route('travel-package.index');
     }
 
@@ -101,6 +104,48 @@ class TravelPackageController extends Controller
         $item = TravelPackage::findOrFail($id);
         $item->delete();
 
+        return redirect()->route('travel-package.index');
+    }
+
+    public function travel()
+    {
+        $items = TravelPackage::onlyTrashed()->get();
+        return view('pages.admin.travel-package.trash', ['items' => $items]);
+    }
+
+    public function restoretravel($id)
+    {
+        $travel = TravelPackage::onlyTrashed()->where('id', $id);
+        $travel->restore();
+
+        alert()->info('Data berhasil dipulihkan', 'Restore');
+        return redirect()->route('travel-package.index');
+    }
+
+    public function restore_alltravel()
+    {
+        $travel = TravelPackage::onlyTrashed();
+        $travel->restore();
+
+        alert()->info('Data berhasil dipulihkan', 'Restore');
+        return redirect()->route('travel-package.index');
+    }
+
+    public function deletetravel($id)
+    {
+        $travel = TravelPackage::onlyTrashed()->where('id', $id);
+        $travel->forceDelete();
+
+        alert()->error('Data berhasil dihapus', 'Delete');
+        return redirect()->route('travel-package.index');
+    }
+
+    public function delete_alltravel()
+    {
+        $travel = TravelPackage::onlyTrashed();
+        $travel->forceDelete();
+
+        alert()->error('Data berhasil dihapus', 'Delete');
         return redirect()->route('travel-package.index');
     }
 }

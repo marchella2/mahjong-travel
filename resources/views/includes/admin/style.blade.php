@@ -6,3 +6,5 @@
 
 <!-- Custom styles for this template-->
 <link href="{{ url('backend/css/sb-admin-2.min.css') }}" rel="stylesheet">
+<!-- Sweet ALert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

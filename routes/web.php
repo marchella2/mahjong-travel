@@ -24,4 +24,10 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'admin'])->group
 
     // Travel Package
     Route::resource('travel-package', 'TravelPackageController');
+    // Soft Deletes CRUD Travel Package
+    Route::get('/trash', 'TravelPackageController@travel')->name('travel-package.trash');
+    Route::get('/restore/{id}', 'TravelPackageController@restoretravel')->name('travel-package.restore');
+    Route::get('/restore_all', 'TravelPackageController@restore_alltravel')->name('travel-package.restoreall');
+    Route::get('/delete/{id}', 'TravelPackageController@deletetravel')->name('travel-package.delete');
+    Route::get('/delete_all', 'TravelPackageController@delete_alltravel')->name('travel-package.deleteall');
 });

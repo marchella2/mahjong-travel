@@ -9,14 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>MAHJONG Admin</title>
+    <title>MAHJONG Admin | @yield('title')</title>
 
     @include('includes.admin.style')
 
 </head>
 
 <body id="page-top">
-
+    @include('sweet::alert')
     <!-- Page Wrapper -->
     <div id="wrapper">
 

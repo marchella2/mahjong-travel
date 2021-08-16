@@ -9,12 +9,12 @@
 
         <!-- Page Heading -->
         <div class="col-12 col-md-12 col-lg-12">
-            <h1 class="h3 mb-0 text-gray-800">Paket Travel</h1>
-            <a href="{{ route('travel-package.create') }}" class="btn btn-sm btn-primary shadow-sm">
-                <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Paket Travel
+            <h1 class="h3 mb-0 text-gray-800">Recycle Bin</h1>
+            <a href="{{ route('travel-package.restoreall') }}" class="btn btn-sm btn-success shadow-sm" onclick="return confirm('Apakah anda yakin ingin mengembalikan seluruh data?')">
+                <i class="far fa-edit fa-sm text-white-50"></i> Restore All
             </a>
-            <a href="{{ route('travel-package.trash') }}" class="btn btn-sm btn-danger shadow-sm">
-                <i class="fas fa-trash fa-sm text-white-50"></i> Recycle Bin
+            <a href="{{ route('travel-package.deleteall') }}" class="btn btn-sm btn-danger shadow-sm" onclick="return confirm('Apakah anda yakin ingin menghapus seluruh data?')">
+                <i class="fas fa-trash fa-sm text-white-50"></i> Delete All
             </a>
         </div>
 
@@ -43,15 +43,8 @@
                                     <td>{{ $item->departure_date }}</td>
                                     <td>{{ $item->type }}</td>
                                     <td>
-                                        <a href="{{ route('travel-package.edit', $item->id) }}" class="btn btn-info"><i class="fa fa-pencil-alt"></i></a>
-                                        <form action="{{ route('travel-package.destroy', $item->id) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button class="btn btn-danger">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
+                                        <a href="{{ route('travel-package.restore', $item->id) }}" class="btn btn-success"><i class="fa fa-pencil-alt"></i></a>
+                                        <a href="{{ route('travel-package.delete', $item->id) }}" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus permanen data travel : {{ $item->title }} ?')"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @empty

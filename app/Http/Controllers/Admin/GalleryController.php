@@ -116,43 +116,43 @@ class GalleryController extends Controller
         return redirect()->route('gallery.index');
     }
 
-    public function travel()
+    public function gallery()
     {
-        $items = Gallery::onlyTrashed()->get();
-        return view('pages.admin.gallery.trash', ['items' => $items]);
+        $items = Gallery::with(['travel_package'])->onlyTrashed()->get();
+        return view('pages.admin.gallery.deletes', ['items' => $items]);
     }
 
-    public function restoretravel($id)
+    public function restoregallery($id)
     {
-        $travel = Gallery::onlyTrashed()->where('id', $id);
-        $travel->restore();
+        $gallery = Gallery::onlyTrashed()->where('id', $id);
+        $gallery->restore();
 
         alert()->info('Data berhasil dipulihkan', 'Restore');
         return redirect()->route('gallery.index');
     }
 
-    public function restore_alltravel()
+    public function restore_allgallery()
     {
-        $travel = Gallery::onlyTrashed();
-        $travel->restore();
+        $gallery = Gallery::onlyTrashed();
+        $gallery->restore();
 
         alert()->info('Data berhasil dipulihkan', 'Restore');
         return redirect()->route('gallery.index');
     }
 
-    public function deletetravel($id)
+    public function deletegallery($id)
     {
-        $travel = Gallery::onlyTrashed()->where('id', $id);
-        $travel->forceDelete();
+        $gallery = Gallery::onlyTrashed()->where('id', $id);
+        $gallery->forceDelete();
 
         alert()->error('Data berhasil dihapus', 'Delete');
         return redirect()->route('gallery.index');
     }
 
-    public function delete_alltravel()
+    public function delete_allgallery()
     {
-        $travel = Gallery::onlyTrashed();
-        $travel->forceDelete();
+        $gallery = Gallery::onlyTrashed();
+        $gallery->forceDelete();
 
         alert()->error('Data berhasil dihapus', 'Delete');
         return redirect()->route('gallery.index');

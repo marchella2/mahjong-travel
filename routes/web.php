@@ -35,4 +35,9 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'admin'])->group
     Route::get('/delete_all', 'TravelPackageController@delete_alltravel')->name('travel-package.deleteall');
 
     //Soft Deletes CRUD Gallery
+    Route::get('/galleries/trash', 'GalleryController@gallery')->name('gallery.trash');
+    Route::get('/galleries/restore/{id}', 'GalleryController@restoregallery')->name('gallery.restore');
+    Route::get('/galleries/restore_all', 'GalleryController@restore_allgallery')->name('gallery.restoreall');
+    Route::get('/galleries/delete/{id}', 'GalleryController@deletegallery')->name('gallery.delete');
+    Route::get('/galleries/delete_all', 'GalleryController@delete_allgallery')->name('gallery.deleteall');
 });

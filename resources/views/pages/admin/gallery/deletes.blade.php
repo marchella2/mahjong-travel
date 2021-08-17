@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Paket Travel')
+@section('title', 'Gallery')
 
 
 @section('content')
@@ -25,11 +25,8 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Title</th>
-                                <th>Location</th>
-                                <th>Type</th>
-                                <th>Departure Date</th>
-                                <th>Type</th>
+                                <th>Travel</th>
+                                <th>Image</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -37,14 +34,13 @@
                             @forelse ($items as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->title }}</td>
-                                    <td>{{ $item->location }}</td>
-                                    <td>{{ $item->type }}</td>
-                                    <td>{{ $item->departure_date }}</td>
-                                    <td>{{ $item->type }}</td>
+                                    <td>{{ $item->travel_package->title }}</td>
+                                    <td>
+                                        <img src="{{ Storage::url($item->image) }}" alt="" style="width: 150px;" class="img-thumbnail">
+                                    </td>
                                     <td>
                                         <a href="{{ route('gallery.restore', $item->id) }}" class="btn btn-success"><i class="fa fa-pencil-alt"></i></a>
-                                        <a href="{{ route('gallery.delete', $item->id) }}" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus permanen data travel : {{ $item->title }} ?')"><i class="fa fa-trash"></i></a>
+                                        <a href="{{ route('gallery.delete', $item->id) }}" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus permanen data travel : {{ $item->travel_package->title }} ?')"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @empty

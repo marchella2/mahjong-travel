@@ -13,9 +13,9 @@
             <a href="{{ route('gallery.create') }}" class="btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Gallery
             </a>
-            {{-- <a href="{{ route('gallery.trash') }}" class="btn btn-sm btn-danger shadow-sm">
+            <a href="{{ route('gallery.trash') }}" class="btn btn-sm btn-danger shadow-sm">
                 <i class="fas fa-trash fa-sm text-white-50"></i> Recycle Bin
-            </a> --}}
+            </a>
         </div>
 
         <div class="row">

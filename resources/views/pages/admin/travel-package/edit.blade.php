@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Paket Travel')
+
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">

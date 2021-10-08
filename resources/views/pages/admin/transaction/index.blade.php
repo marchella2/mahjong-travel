@@ -10,9 +10,9 @@
         <!-- Page Heading -->
         <div class="col-12 col-md-12 col-lg-12">
             <h1 class="h3 mb-0 text-gray-800">Transaksi</h1>
-            {{-- <a href="{{ route('transaction.trash') }}" class="btn btn-sm btn-danger shadow-sm">
+            <a href="{{ route('transaction.trash') }}" class="btn btn-sm btn-danger shadow-sm">
                 <i class="fas fa-trash fa-sm text-white-50"></i> Recycle Bin
-            </a> --}}
+            </a>
         </div>
 
         <div class="row">

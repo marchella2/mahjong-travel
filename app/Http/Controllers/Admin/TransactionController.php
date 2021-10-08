@@ -113,13 +113,13 @@ class TransactionController extends Controller
         return redirect()->route('transaction.index');
     }
 
-    public function travel()
+    public function transaction()
     {
         $items = Transaction::onlyTrashed()->get();
         return view('pages.admin.transaction.trash', ['items' => $items]);
     }
 
-    public function restoretravel($id)
+    public function restoretransaction($id)
     {
         $travel = Transaction::onlyTrashed()->where('id', $id);
         $travel->restore();
@@ -128,7 +128,7 @@ class TransactionController extends Controller
         return redirect()->route('transaction.index');
     }
 
-    public function restore_alltravel()
+    public function restore_alltransaction()
     {
         $travel = Transaction::onlyTrashed();
         $travel->restore();
@@ -137,7 +137,7 @@ class TransactionController extends Controller
         return redirect()->route('transaction.index');
     }
 
-    public function deletetravel($id)
+    public function deletetransaction($id)
     {
         $travel = Transaction::onlyTrashed()->where('id', $id);
         $travel->forceDelete();
@@ -146,7 +146,7 @@ class TransactionController extends Controller
         return redirect()->route('transaction.index');
     }
 
-    public function delete_alltravel()
+    public function delete_alltransaction()
     {
         $travel = Transaction::onlyTrashed();
         $travel->forceDelete();

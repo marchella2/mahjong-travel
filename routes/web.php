@@ -26,6 +26,8 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'admin'])->group
     Route::resource('travel-package', 'TravelPackageController');
     // CRUD Gallery
     Route::resource('gallery', 'GalleryController');
+    // CRUD Transaction
+    Route::resource('transaction', 'TransactionController');
 
     // Soft Deletes CRUD Travel Package
     Route::get('/trash', 'TravelPackageController@travel')->name('travel-package.trash');

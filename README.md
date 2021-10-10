@@ -7,6 +7,17 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Setup This Project
+1. Clone this project `https://github.com/marchella2/mahjong-travel.git`
+2. Go to project folder & open in code editor
+3. Run `composer install`
+4. Create `.env` file with commands `cp .env.example .env`
+5. Generate key inside `.env` file with commands `php artisan key:generate`
+6. Start your XAMPP (Apache & MySQL)
+7. Open `.env` file and edit database config
+8. Run migration using `php artisan migrate` command
+9. Run project with command `php artisan serve`
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

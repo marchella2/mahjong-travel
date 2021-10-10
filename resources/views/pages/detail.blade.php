@@ -29,51 +29,31 @@
             <div class="row">
                 <div class="col-lg-8 pl-lg-0">
                     <div class="card card-details">
-                        <h1>Nusa Peninda</h1>
+                        <h1>{{ $item->title }}</h1>
                         <p>
-                            Republic of Indonesia Raya
+                            {{ $item->location }}
                         </p>
 
                         <!-- Gallery -->
                         <div class="gallery">
                             <!-- Foto wisata -->
+                            @if ($item->galleries->count())
                             <div class="xzoom-container">
-                                <img src="{{ url('frontend/images/details1.png') }}" alt="Details 1" class="xzoom" id="xzoom-default" xoriginal="{{ url('frontend/images/details1.png') }}">
+                                <img src="{{ Storage::url($item->galleries->first()->image) }}" alt="Details 1" class="xzoom" id="xzoom-default" xoriginal="{{ Storage::url($item->galleries->first()->image) }}">
 
                                 <!-- Kumpulan foto wisata -->
                                 <div class="xzoom-thumbs">
-                                    <a href="{{ url('frontend/images/details1.png') }}">
-                                        <img src="{{ url('frontend/images/details1.png') }}" width="128" alt="Details 1" class="xzoom-gallery" id="xzoom-default" xpreview="{{ url('frontend/images/details1.png') }}">
-                                    </a>
-
-                                    <a href="{{ url('frontend/images/details2.jpg') }}">
-                                        <img src="{{ url('frontend/images/details2.jpg') }}" width="128" alt="Details 2" class="xzoom-gallery" id="xzoom-default" xpreview="{{ url('frontend/images/details2.jpg') }}">
-                                    </a>
-
-                                    <a href="{{ url('frontend/images/details3.jpg') }}">
-                                        <img src="{{ url('frontend/images/details3.jpg') }}" width="128" alt="Details 3" class="xzoom-gallery" id="xzoom-default" xpreview="{{ url('frontend/images/details3.jpg') }}">
-                                    </a>
-
-                                    <a href="{{ url('frontend/images/details4.jpg') }}">
-                                        <img src="{{ url('frontend/images/details4.jpg') }}" width="128" alt="Details 4" class="xzoom-gallery" id="xzoom-default" xpreview="{{ url('frontend/images/details4.jpg') }}">
-                                    </a>
-
-                                    <a href="{{ url('frontend/images/details5.jpg') }}">
-                                        <img src="{{ url('frontend/images/details5.jpg') }}" width="128" alt="Details 5" class="xzoom-gallery" id="xzoom-default" xpreview="{{ url('frontend/images/details5.jpg') }}">
-                                    </a>
+                                    @foreach ($item->galleries as $gallery)
+                                        <a href="{{ Storage::url($gallery->image) }}">
+                                            <img src="{{ Storage::url($gallery->image) }}" width="128" alt="Details 1" class="xzoom-gallery" id="xzoom-default" xpreview="{{ Storage::url($gallery->image) }}">
+                                        </a>
+                                    @endforeach
                                 </div>
                             </div>
+                            @endif
                             <h2>Tentang Wisata</h2>
                             <p>
-                                Nusa Penida is an island southeast of Indonesia's island Bali and a district of Klungkung
-                                Regency that includes the neighbouring small island of Nusa Lembongan. The Badung
-                                Strait separates the island and Bali. The interior of Nusa Penida is hilly with a maximum
-                                altitude of 524 metres. It is drier than the nearby island of Bali.
-                            </p>
-                            <p>
-                                Bali and a district of Klungkung Regency that includes the
-                                neighbouring small island of Nusa Lembongan. The Badung
-                                Strait separates the island and Bali.
+                                {{!! $item->about !!}}
                             </p>
 
                             <!-- Bagian Features -->
@@ -82,7 +62,7 @@
                                     <img src="{{ url('frontend/images/ic_event.png') }}" alt="Event" class="features-image">
                                     <div class="description">
                                         <h3>Featured Event</h3>
-                                        <p>Tari Kecak</p>
+                                        <p>{{ $item->featured_event }}</p>
                                     </div>
                                 </div>
 
@@ -90,7 +70,7 @@
                                     <img src="{{ url('frontend/images/ic_bahasa.png') }}" alt="Bahasa" class="features-image">
                                     <div class="description">
                                         <h3>Language</h3>
-                                        <p>Bahasa Indonesia</p>
+                                        <p>{{ $item->language }}</p>
                                     </div>
                                 </div>
 
@@ -98,7 +78,7 @@
                                     <img src="{{ url('frontend/images/ic_foods.png') }}" alt="Makanan" class="features-image">
                                     <div class="description">
                                         <h3>Foods</h3>
-                                        <p>Local Foods</p>
+                                        <p>{{ $item->foods }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -130,28 +110,28 @@
                             <tr>
                                 <th width="50%">Date of Departure</th>
                                 <td width="50%" class="text-right">
-                                    22 Aug, 2021
+                                    {{ \Carbon\Carbon::create($item->departure_date)->format('F n, Y') }}
                                 </td>
                             </tr>
 
                             <tr>
                                 <th width="50%">Duration</th>
                                 <td width="50%" class="text-right">
-                                    4D 3N
+                                    {{ $item->duration }}
                                 </td>
                             </tr>
 
                             <tr>
                                 <th width="50%">Type of Trip</th>
                                 <td width="50%" class="text-right">
-                                    Open Trip
+                                    {{ $item->type }}
                                 </td>
                             </tr>
 
                             <tr>
                                 <th width="50%">Price</th>
                                 <td width="50%" class="text-right">
-                                    $90.00 / person
+                                    ${{ $item->price }},00 / person
                                 </td>
                             </tr>
                         </table>
@@ -159,7 +139,16 @@
 
                     <!-- Button Join -->
                     <div class="join-container">
-                        <a href="{{ route('checkout') }}" class="btn btn-block btn-join-now mt-3 py-2">Join Now</a>
+                        @auth
+                            <form action="" method="POST">
+                                <button class="btn btn-block btn-join-now mt-3 py-2" type="submit">
+                                    Join Now
+                                </button>
+                            </form>
+                        @endauth
+                        @guest
+                            <a href="{{ route('login') }}" class="btn btn-block btn-join-now mt-3 py-2">Login or Register to Join</a>
+                        @endguest
                     </div>
                 </div>
             </div>

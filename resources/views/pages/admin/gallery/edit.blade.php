@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <label for="travel_packages_id">Paket Travel</label>
                         <select name="travel_packages_id" class="form-control">
-                            <option value="{{ $item->travel_packages_id }}">Jangan Diubah</option>
+                            <option value="{{ $item->travel_packages_id }}">{{ $item->travel_package->title }}</option>
                             @foreach ($travel_packages as $item)
                                 <option value="{{ $item->id }}">{{ $item->title }}</option>
                             @endforeach

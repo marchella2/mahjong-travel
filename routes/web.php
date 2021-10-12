@@ -26,7 +26,7 @@ Route::get('/checkout/{id}', 'CheckoutController@index')->name('checkout')->midd
 Route::post('/checkout/create/{detail_id}', 'CheckoutController@create')->name('checkout-create')->middleware(['auth', 'verified']);
 Route::get('/checkout/remove/{detail_id}', 'CheckoutController@remove')->name('checkout-remove')->middleware(['auth', 'verified']);
 Route::get('/checkout/confirm/{id}', 'CheckoutController@success')->name('checkout-success')->middleware(['auth', 'verified']);
-    
+
 // Role Admin
 Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'admin'])->group(function() {
     Route::get('/', 'DashboardController@index')->name('dashboard');
@@ -53,9 +53,9 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'admin'])->group
     Route::get('/galleries/delete_all', 'GalleryController@delete_allgallery')->name('gallery.deleteall');
 
     // Soft Deletes Transaction
-    Route::get('/transaction/trash', 'TransactionController@transaction')->name('transaction.trash');
-    Route::get('/transaction/restore/{id}', 'Admin\TransactionController@restoretransaction')->name('transaction.restore');
-    Route::get('/transaction/restore_all', 'Admin\TransactionController@restore_alltransaction')->name('transaction.restoreall');
-    Route::get('/transaction/delete/{id}', 'Admin\TransactionController@deletetransaction')->name('transaction.delete');
-    Route::get('/transaction/delete_all', 'Admin\TransactionController@delete_alltransaction')->name('transaction.deleteall');
+    Route::get('/trans/trash', 'TransactionController@transactionTrash')->name('transaction.trash');
+    Route::get('/trans/restore/{id}', 'TransactionController@restoretransaction')->name('transaction.restore');
+    Route::get('/trans/restore_all', 'TransactionController@restore_alltransaction')->name('transaction.restoreall');
+    Route::get('/trans/delete/{id}', 'TransactionController@deletetransaction')->name('transaction.delete');
+    Route::get('/trans/delete_all', 'TransactionController@delete_alltransaction')->name('transaction.deleteall');
 });

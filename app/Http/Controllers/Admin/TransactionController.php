@@ -113,10 +113,10 @@ class TransactionController extends Controller
         return redirect()->route('transaction.index');
     }
 
-    public function transaction()
+    public function transactionTrash()
     {
         $items = Transaction::onlyTrashed()->get();
-        return view('pages.admin.transaction.trash', ['items' => $items]);
+        return view('pages.admin.transaction.delete', ['items' => $items]);
     }
 
     public function restoretransaction($id)

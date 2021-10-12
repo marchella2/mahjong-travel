@@ -60,7 +60,7 @@ class CheckoutController extends Controller
         $transaction->save();
         $item->delete();
 
-        return redirect()->route('checkout', $item->transaction_id);
+        return redirect()->route('checkout', $item->transactions_id);
     }
 
     public function create(Request $request, $id)

@@ -49,7 +49,7 @@
                                     <th>Visa</th>
                                     <th>DOE Passport</th>
                                 </tr>
-                                @foreach ($item->details as $details)
+                                @foreach ($item->details as $detail)
                                     <tr>
                                         <td>{{ $detail->id }}</td>
                                         <td>{{ $detail->username }}</td>

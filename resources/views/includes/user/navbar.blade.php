@@ -17,10 +17,10 @@
                 </li>
 
                 <li class="nav-item mx-md-2">
-                    <a href="#" class="nav-link">Paket Travel</a>
+                    <a href="#popular" class="nav-link">Paket Travel</a>
                 </li>
 
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
                         Services
                     </a>
@@ -29,13 +29,13 @@
                         <a href="#" class="dropdown-item">Link 2</a>
                         <a href="#" class="dropdown-item">Link 3</a>
                     </div>
-                </li>
+                </li> --}}
 
                 <li class="nav-item mx-md-2">
-                    <a href="#" class="nav-link">Testimonial</a>
+                    <a href="#testimonialHeading" class="nav-link">Testimonial</a>
                 </li>
             </ul>
-           
+
             @guest
                 <!-- Mobile Button -->
                 <form action="#" class="form-inline d-sm-block d-md-none">

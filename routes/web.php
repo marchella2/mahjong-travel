@@ -28,34 +28,34 @@ Route::get('/checkout/remove/{detail_id}', 'CheckoutController@remove')->name('c
 Route::get('/checkout/confirm/{id}', 'CheckoutController@success')->name('checkout-success')->middleware(['auth', 'verified']);
 
 // Role Admin
-Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'admin'])->group(function() {
-    Route::get('/', 'DashboardController@index')->name('dashboard');
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function() {
+    Route::get('/', 'HomeController@adminDashboard')->name('dashboard');
 
     // CRUD Travel Package
-    Route::resource('travel-package', 'TravelPackageController');
+    Route::resource('travel-package', 'Admin\TravelPackageController');
     // CRUD Gallery
-    Route::resource('gallery', 'GalleryController');
+    Route::resource('gallery', 'Admin\GalleryController');
     // CRUD Transaction
-    Route::resource('transaction', 'TransactionController');
+    Route::resource('transaction', 'Admin\TransactionController');
 
     // Soft Deletes CRUD Travel Package
-    Route::get('/trash', 'TravelPackageController@travel')->name('travel-package.trash');
-    Route::get('/restore/{id}', 'TravelPackageController@restoretravel')->name('travel-package.restore');
-    Route::get('/restore_all', 'TravelPackageController@restore_alltravel')->name('travel-package.restoreall');
-    Route::get('/delete/{id}', 'TravelPackageController@deletetravel')->name('travel-package.delete');
-    Route::get('/delete_all', 'TravelPackageController@delete_alltravel')->name('travel-package.deleteall');
+    Route::get('/trash', 'Admin\TravelPackageController@travel')->name('travel-package.trash');
+    Route::get('/restore/{id}', 'Admin\TravelPackageController@restoretravel')->name('travel-package.restore');
+    Route::get('/restore_all', 'Admin\TravelPackageController@restore_alltravel')->name('travel-package.restoreall');
+    Route::get('/delete/{id}', 'Admin\TravelPackageController@deletetravel')->name('travel-package.delete');
+    Route::get('/delete_all', 'Admin\TravelPackageController@delete_alltravel')->name('travel-package.deleteall');
 
     //Soft Deletes CRUD Gallery
-    Route::get('/galleries/trash', 'GalleryController@gallery')->name('gallery.trash');
-    Route::get('/galleries/restore/{id}', 'GalleryController@restoregallery')->name('gallery.restore');
-    Route::get('/galleries/restore_all', 'GalleryController@restore_allgallery')->name('gallery.restoreall');
-    Route::get('/galleries/delete/{id}', 'GalleryController@deletegallery')->name('gallery.delete');
-    Route::get('/galleries/delete_all', 'GalleryController@delete_allgallery')->name('gallery.deleteall');
+    Route::get('/galleries/trash', 'Admin\GalleryController@gallery')->name('gallery.trash');
+    Route::get('/galleries/restore/{id}', 'Admin\GalleryController@restoregallery')->name('gallery.restore');
+    Route::get('/galleries/restore_all', 'Admin\GalleryController@restore_allgallery')->name('gallery.restoreall');
+    Route::get('/galleries/delete/{id}', 'Admin\GalleryController@deletegallery')->name('gallery.delete');
+    Route::get('/galleries/delete_all', 'Admin\GalleryController@delete_allgallery')->name('gallery.deleteall');
 
     // Soft Deletes Transaction
-    Route::get('/trans/trash', 'TransactionController@transactionTrash')->name('transaction.trash');
-    Route::get('/trans/restore/{id}', 'TransactionController@restoretransaction')->name('transaction.restore');
-    Route::get('/trans/restore_all', 'TransactionController@restore_alltransaction')->name('transaction.restoreall');
-    Route::get('/trans/delete/{id}', 'TransactionController@deletetransaction')->name('transaction.delete');
-    Route::get('/trans/delete_all', 'TransactionController@delete_alltransaction')->name('transaction.deleteall');
+    Route::get('/trans/trash', 'Admin\TransactionController@transactionTrash')->name('transaction.trash');
+    Route::get('/trans/restore/{id}', 'Admin\TransactionController@restoretransaction')->name('transaction.restore');
+    Route::get('/trans/restore_all', 'Admin\TransactionController@restore_alltransaction')->name('transaction.restoreall');
+    Route::get('/trans/delete/{id}', 'Admin\TransactionController@deletetransaction')->name('transaction.delete');
+    Route::get('/trans/delete_all', 'Admin\TransactionController@delete_alltransaction')->name('transaction.deleteall');
 });
